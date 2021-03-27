@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/BurnableBEP20.dist.sol | faa4566fdafdcaf596340f85cb0a66bc43fdeb72 |
+| dist/BurnableBEP20.dist.sol | 6bebf9b7c6299a693208c165fb1baf52045e2291 |
 
 
 ### Contracts Description Table
@@ -20,25 +20,10 @@
 | └ | _msgData | Internal 🔒 |   | |
 ||||||
 | **Ownable** | Implementation | Context |||
-| └ | <Constructor> | Internal 🔒 | 🛑  | |
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 | └ | owner | Public ❗️ |   |NO❗️ |
 | └ | renounceOwnership | Public ❗️ | 🛑  | onlyOwner |
 | └ | transferOwnership | Public ❗️ | 🛑  | onlyOwner |
-||||||
-| **SafeMath** | Library |  |||
-| └ | tryAdd | Internal 🔒 |   | |
-| └ | trySub | Internal 🔒 |   | |
-| └ | tryMul | Internal 🔒 |   | |
-| └ | tryDiv | Internal 🔒 |   | |
-| └ | tryMod | Internal 🔒 |   | |
-| └ | add | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | mul | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
 ||||||
 | **IBEP20** | Interface |  |||
 | └ | name | External ❗️ |   |NO❗️ |
@@ -73,7 +58,7 @@
 | └ | _setupDecimals | Internal 🔒 | 🛑  | |
 | └ | _beforeTokenTransfer | Internal 🔒 | 🛑  | |
 ||||||
-| **BEP20Burnable** | Implementation | Context, BEP20 |||
+| **BEP20Burnable** | Implementation | BEP20 |||
 | └ | burn | Public ❗️ | 🛑  |NO❗️ |
 | └ | burnFrom | Public ❗️ | 🛑  |NO❗️ |
 ||||||

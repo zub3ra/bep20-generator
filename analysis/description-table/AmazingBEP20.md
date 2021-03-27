@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/AmazingBEP20.dist.sol | ec414fefc288df0fa35f6f13562feb1f7a6d092f |
+| dist/AmazingBEP20.dist.sol | e1092893875f441a39b11abf2c4470ef3039ce1d |
 
 
 ### Contracts Description Table
@@ -20,25 +20,10 @@
 | └ | _msgData | Internal 🔒 |   | |
 ||||||
 | **Ownable** | Implementation | Context |||
-| └ | <Constructor> | Internal 🔒 | 🛑  | |
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 | └ | owner | Public ❗️ |   |NO❗️ |
 | └ | renounceOwnership | Public ❗️ | 🛑  | onlyOwner |
 | └ | transferOwnership | Public ❗️ | 🛑  | onlyOwner |
-||||||
-| **SafeMath** | Library |  |||
-| └ | tryAdd | Internal 🔒 |   | |
-| └ | trySub | Internal 🔒 |   | |
-| └ | tryMul | Internal 🔒 |   | |
-| └ | tryDiv | Internal 🔒 |   | |
-| └ | tryMod | Internal 🔒 |   | |
-| └ | add | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | mul | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
 ||||||
 | **IBEP20** | Interface |  |||
 | └ | name | External ❗️ |   |NO❗️ |
@@ -79,7 +64,7 @@
 | └ | finishMinting | Public ❗️ | 🛑  | canMint |
 | └ | _finishMinting | Internal 🔒 | 🛑  | |
 ||||||
-| **BEP20Burnable** | Implementation | Context, BEP20 |||
+| **BEP20Burnable** | Implementation | BEP20 |||
 | └ | burn | Public ❗️ | 🛑  |NO❗️ |
 | └ | burnFrom | Public ❗️ | 🛑  |NO❗️ |
 ||||||
@@ -119,15 +104,12 @@
 | └ | getSupportedInterfaces | Internal 🔒 |   | |
 | └ | supportsAllInterfaces | Internal 🔒 |   | |
 | └ | _supportsERC165Interface | Private 🔐 |   | |
-| └ | _callERC165SupportsInterface | Private 🔐 |   | |
 ||||||
 | **ERC165** | Implementation | IERC165 |||
-| └ | <Constructor> | Internal 🔒 | 🛑  | |
 | └ | supportsInterface | Public ❗️ |   |NO❗️ |
-| └ | _registerInterface | Internal 🔒 | 🛑  | |
 ||||||
 | **BEP20Operable** | Implementation | BEP20, IBEP20Operable, ERC165 |||
-| └ | <Constructor> | Public ❗️ | 🛑  | BEP20 |
+| └ | supportsInterface | Public ❗️ |   |NO❗️ |
 | └ | transferAndCall | Public ❗️ | 🛑  |NO❗️ |
 | └ | transferAndCall | Public ❗️ | 🛑  |NO❗️ |
 | └ | transferFromAndCall | Public ❗️ | 🛑  |NO❗️ |
@@ -147,7 +129,7 @@
 | └ | <Constructor> | Public ❗️ |  💵 |NO❗️ |
 ||||||
 | **AmazingBEP20** | Implementation | BEP20Mintable, BEP20Burnable, BEP20Operable, TokenRecover, ServicePayer |||
-| └ | <Constructor> | Public ❗️ |  💵 | BEP20Operable ServicePayer |
+| └ | <Constructor> | Public ❗️ |  💵 | BEP20 ServicePayer |
 | └ | _mint | Internal 🔒 | 🛑  | onlyOwner |
 | └ | _finishMinting | Internal 🔒 | 🛑  | onlyOwner |
 

@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "./IBEP20.sol";
 
@@ -27,8 +26,6 @@ import "./IBEP20.sol";
  * allowances. See {IBEP20-approve}.
  */
 contract BEP20 is Ownable, IBEP20 {
-    using SafeMath for uint256;
-
     mapping (address => uint256) private _balances;
 
     mapping (address => mapping (address => uint256)) private _allowances;
@@ -135,7 +132,11 @@ contract BEP20 is Ownable, IBEP20 {
      */
     function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
         _transfer(sender, recipient, amount);
-        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "BEP20: transfer amount exceeds allowance"));
+
+        uint256 currentAllowance = _allowances[sender][_msgSender()];
+        require(currentAllowance >= amount, "BEP20: transfer amount exceeds allowance");
+        _approve(sender, _msgSender(), currentAllowance - amount);
+
         return true;
     }
 
@@ -171,7 +172,7 @@ contract BEP20 is Ownable, IBEP20 {
      * - `spender` cannot be the zero address.
      */
     function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
-        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].add(addedValue));
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender] + addedValue);
         return true;
     }
 
@@ -190,7 +191,10 @@ contract BEP20 is Ownable, IBEP20 {
      * `subtractedValue`.
      */
     function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
-        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "BEP20: decreased allowance below zero"));
+        uint256 currentAllowance = _allowances[_msgSender()][spender];
+        require(currentAllowance >= subtractedValue, "BEP20: decreased allowance below zero");
+        _approve(_msgSender(), spender, currentAllowance - subtractedValue);
+
         return true;
     }
 
@@ -214,8 +218,11 @@ contract BEP20 is Ownable, IBEP20 {
 
         _beforeTokenTransfer(sender, recipient, amount);
 
-        _balances[sender] = _balances[sender].sub(amount, "BEP20: transfer amount exceeds balance");
-        _balances[recipient] = _balances[recipient].add(amount);
+        uint256 senderBalance = _balances[sender];
+        require(senderBalance >= amount, "BEP20: transfer amount exceeds balance");
+        _balances[sender] = senderBalance - amount;
+        _balances[recipient] += amount;
+
         emit Transfer(sender, recipient, amount);
     }
 
@@ -233,8 +240,8 @@ contract BEP20 is Ownable, IBEP20 {
 
         _beforeTokenTransfer(address(0), account, amount);
 
-        _totalSupply = _totalSupply.add(amount);
-        _balances[account] = _balances[account].add(amount);
+        _totalSupply += amount;
+        _balances[account] += amount;
         emit Transfer(address(0), account, amount);
     }
 
@@ -254,8 +261,11 @@ contract BEP20 is Ownable, IBEP20 {
 
         _beforeTokenTransfer(account, address(0), amount);
 
-        _balances[account] = _balances[account].sub(amount, "BEP20: burn amount exceeds balance");
-        _totalSupply = _totalSupply.sub(amount);
+        uint256 accountBalance = _balances[account];
+        require(accountBalance >= amount, "BEP20: burn amount exceeds balance");
+        _balances[account] = accountBalance - amount;
+        _totalSupply -= amount;
+
         emit Transfer(account, address(0), amount);
     }
 

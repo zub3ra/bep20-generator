@@ -4,13 +4,11 @@ const INTERFACES = {
   ERC165: [
     'supportsInterface(bytes4)',
   ],
-  BEP20OperableTransfer: [
+  BEP20Operable: [
     'transferAndCall(address,uint256)',
     'transferAndCall(address,uint256,bytes)',
     'transferFromAndCall(address,address,uint256)',
     'transferFromAndCall(address,address,uint256,bytes)',
-  ],
-  BEP20OperableApprove: [
     'approveAndCall(address,uint256)',
     'approveAndCall(address,uint256,bytes)',
   ],

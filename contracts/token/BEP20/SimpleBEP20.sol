@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 import "./lib/BEP20.sol";
 
@@ -12,7 +12,7 @@ import "../../utils/GeneratorCopyright.sol";
  * @author BEP20 Generator (https://vittominacori.github.io/bep20-generator)
  * @dev Implementation of the SimpleBEP20
  */
-contract SimpleBEP20 is BEP20, ServicePayer, GeneratorCopyright("v1.4.0") {
+contract SimpleBEP20 is BEP20, ServicePayer, GeneratorCopyright("v2.0.0") {
 
     constructor (
         string memory name,

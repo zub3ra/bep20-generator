@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/ServiceReceiver.dist.sol | 536f11c0471d545f70cc9e1a3aa6f99914e2dfba |
+| dist/ServiceReceiver.dist.sol | de9b86c1579c29646a0be954bb19c37609a374ea |
 
 
 ### Contracts Description Table
@@ -20,7 +20,7 @@
 | └ | _msgData | Internal 🔒 |   | |
 ||||||
 | **Ownable** | Implementation | Context |||
-| └ | <Constructor> | Internal 🔒 | 🛑  | |
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 | └ | owner | Public ❗️ |   |NO❗️ |
 | └ | renounceOwnership | Public ❗️ | 🛑  | onlyOwner |
 | └ | transferOwnership | Public ❗️ | 🛑  | onlyOwner |

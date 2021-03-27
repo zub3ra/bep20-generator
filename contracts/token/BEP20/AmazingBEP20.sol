@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 import "./lib/BEP20Mintable.sol";
 import "./lib/BEP20Burnable.sol";
@@ -23,7 +23,7 @@ contract AmazingBEP20 is BEP20Mintable, BEP20Burnable, BEP20Operable, TokenRecov
         uint256 initialBalance,
         address payable feeReceiver
     )
-      BEP20Operable(name, symbol)
+      BEP20(name, symbol)
       ServicePayer(feeReceiver, "AmazingBEP20")
       payable
     {

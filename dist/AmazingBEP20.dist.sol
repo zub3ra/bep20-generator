@@ -4,24 +4,24 @@
 
 
 
-pragma solidity >=0.6.0 <0.8.0;
+pragma solidity ^0.8.0;
 
 /*
  * @dev Provides information about the current execution context, including the
  * sender of the transaction and its data. While these are generally available
  * via msg.sender and msg.data, they should not be accessed in such a direct
- * manner, since when dealing with GSN meta-transactions the account sending and
+ * manner, since when dealing with meta-transactions the account sending and
  * paying for execution may not be the actual sender (as far as an application
  * is concerned).
  *
  * This contract is only required for intermediate, library-like contracts.
  */
 abstract contract Context {
-    function _msgSender() internal view virtual returns (address payable) {
+    function _msgSender() internal view virtual returns (address) {
         return msg.sender;
     }
 
-    function _msgData() internal view virtual returns (bytes memory) {
+    function _msgData() internal view virtual returns (bytes calldata) {
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
         return msg.data;
     }
@@ -31,7 +31,7 @@ abstract contract Context {
 
 
 
-pragma solidity >=0.6.0 <0.8.0;
+pragma solidity ^0.8.0;
 
 /**
  * @dev Contract module which provides a basic access control mechanism, where
@@ -53,7 +53,7 @@ abstract contract Ownable is Context {
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
-    constructor () internal {
+    constructor () {
         address msgSender = _msgSender();
         _owner = msgSender;
         emit OwnershipTransferred(address(0), msgSender);
@@ -97,228 +97,11 @@ abstract contract Ownable is Context {
     }
 }
 
-// File: @openzeppelin/contracts/math/SafeMath.sol
-
-
-
-pragma solidity >=0.6.0 <0.8.0;
-
-/**
- * @dev Wrappers over Solidity's arithmetic operations with added overflow
- * checks.
- *
- * Arithmetic operations in Solidity wrap on overflow. This can easily result
- * in bugs, because programmers usually assume that an overflow raises an
- * error, which is the standard behavior in high level programming languages.
- * `SafeMath` restores this intuition by reverting the transaction when an
- * operation overflows.
- *
- * Using this library instead of the unchecked operations eliminates an entire
- * class of bugs, so it's recommended to use it always.
- */
-library SafeMath {
-    /**
-     * @dev Returns the addition of two unsigned integers, with an overflow flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        uint256 c = a + b;
-        if (c < a) return (false, 0);
-        return (true, c);
-    }
-
-    /**
-     * @dev Returns the substraction of two unsigned integers, with an overflow flag.
-     *
-     * _Available since v3.4._
-     */
-    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        if (b > a) return (false, 0);
-        return (true, a - b);
-    }
-
-    /**
-     * @dev Returns the multiplication of two unsigned integers, with an overflow flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
-        // benefit is lost if 'b' is also tested.
-        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522
-        if (a == 0) return (true, 0);
-        uint256 c = a * b;
-        if (c / a != b) return (false, 0);
-        return (true, c);
-    }
-
-    /**
-     * @dev Returns the division of two unsigned integers, with a division by zero flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        if (b == 0) return (false, 0);
-        return (true, a / b);
-    }
-
-    /**
-     * @dev Returns the remainder of dividing two unsigned integers, with a division by zero flag.
-     *
-     * _Available since v3.4._
-     */
-    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-        if (b == 0) return (false, 0);
-        return (true, a % b);
-    }
-
-    /**
-     * @dev Returns the addition of two unsigned integers, reverting on
-     * overflow.
-     *
-     * Counterpart to Solidity's `+` operator.
-     *
-     * Requirements:
-     *
-     * - Addition cannot overflow.
-     */
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, "SafeMath: addition overflow");
-        return c;
-    }
-
-    /**
-     * @dev Returns the subtraction of two unsigned integers, reverting on
-     * overflow (when the result is negative).
-     *
-     * Counterpart to Solidity's `-` operator.
-     *
-     * Requirements:
-     *
-     * - Subtraction cannot overflow.
-     */
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        require(b <= a, "SafeMath: subtraction overflow");
-        return a - b;
-    }
-
-    /**
-     * @dev Returns the multiplication of two unsigned integers, reverting on
-     * overflow.
-     *
-     * Counterpart to Solidity's `*` operator.
-     *
-     * Requirements:
-     *
-     * - Multiplication cannot overflow.
-     */
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-        if (a == 0) return 0;
-        uint256 c = a * b;
-        require(c / a == b, "SafeMath: multiplication overflow");
-        return c;
-    }
-
-    /**
-     * @dev Returns the integer division of two unsigned integers, reverting on
-     * division by zero. The result is rounded towards zero.
-     *
-     * Counterpart to Solidity's `/` operator. Note: this function uses a
-     * `revert` opcode (which leaves remaining gas untouched) while Solidity
-     * uses an invalid opcode to revert (consuming all remaining gas).
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        require(b > 0, "SafeMath: division by zero");
-        return a / b;
-    }
-
-    /**
-     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
-     * reverting when dividing by zero.
-     *
-     * Counterpart to Solidity's `%` operator. This function uses a `revert`
-     * opcode (which leaves remaining gas untouched) while Solidity uses an
-     * invalid opcode to revert (consuming all remaining gas).
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-        require(b > 0, "SafeMath: modulo by zero");
-        return a % b;
-    }
-
-    /**
-     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on
-     * overflow (when the result is negative).
-     *
-     * CAUTION: This function is deprecated because it requires allocating memory for the error
-     * message unnecessarily. For custom revert reasons use {trySub}.
-     *
-     * Counterpart to Solidity's `-` operator.
-     *
-     * Requirements:
-     *
-     * - Subtraction cannot overflow.
-     */
-    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b <= a, errorMessage);
-        return a - b;
-    }
-
-    /**
-     * @dev Returns the integer division of two unsigned integers, reverting with custom message on
-     * division by zero. The result is rounded towards zero.
-     *
-     * CAUTION: This function is deprecated because it requires allocating memory for the error
-     * message unnecessarily. For custom revert reasons use {tryDiv}.
-     *
-     * Counterpart to Solidity's `/` operator. Note: this function uses a
-     * `revert` opcode (which leaves remaining gas untouched) while Solidity
-     * uses an invalid opcode to revert (consuming all remaining gas).
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b > 0, errorMessage);
-        return a / b;
-    }
-
-    /**
-     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
-     * reverting with custom message when dividing by zero.
-     *
-     * CAUTION: This function is deprecated because it requires allocating memory for the error
-     * message unnecessarily. For custom revert reasons use {tryMod}.
-     *
-     * Counterpart to Solidity's `%` operator. This function uses a `revert`
-     * opcode (which leaves remaining gas untouched) while Solidity uses an
-     * invalid opcode to revert (consuming all remaining gas).
-     *
-     * Requirements:
-     *
-     * - The divisor cannot be zero.
-     */
-    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {
-        require(b > 0, errorMessage);
-        return a % b;
-    }
-}
-
 // File: contracts/token/BEP20/lib/IBEP20.sol
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 /**
  * @dev Interface of the BEP standard.
@@ -419,8 +202,7 @@ interface IBEP20 {
 
 
 
-pragma solidity ^0.7.0;
-
+pragma solidity ^0.8.0;
 
 
 
@@ -444,8 +226,6 @@ pragma solidity ^0.7.0;
  * allowances. See {IBEP20-approve}.
  */
 contract BEP20 is Ownable, IBEP20 {
-    using SafeMath for uint256;
-
     mapping (address => uint256) private _balances;
 
     mapping (address => mapping (address => uint256)) private _allowances;
@@ -552,7 +332,11 @@ contract BEP20 is Ownable, IBEP20 {
      */
     function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
         _transfer(sender, recipient, amount);
-        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "BEP20: transfer amount exceeds allowance"));
+
+        uint256 currentAllowance = _allowances[sender][_msgSender()];
+        require(currentAllowance >= amount, "BEP20: transfer amount exceeds allowance");
+        _approve(sender, _msgSender(), currentAllowance - amount);
+
         return true;
     }
 
@@ -588,7 +372,7 @@ contract BEP20 is Ownable, IBEP20 {
      * - `spender` cannot be the zero address.
      */
     function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
-        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].add(addedValue));
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender] + addedValue);
         return true;
     }
 
@@ -607,7 +391,10 @@ contract BEP20 is Ownable, IBEP20 {
      * `subtractedValue`.
      */
     function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
-        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "BEP20: decreased allowance below zero"));
+        uint256 currentAllowance = _allowances[_msgSender()][spender];
+        require(currentAllowance >= subtractedValue, "BEP20: decreased allowance below zero");
+        _approve(_msgSender(), spender, currentAllowance - subtractedValue);
+
         return true;
     }
 
@@ -631,8 +418,11 @@ contract BEP20 is Ownable, IBEP20 {
 
         _beforeTokenTransfer(sender, recipient, amount);
 
-        _balances[sender] = _balances[sender].sub(amount, "BEP20: transfer amount exceeds balance");
-        _balances[recipient] = _balances[recipient].add(amount);
+        uint256 senderBalance = _balances[sender];
+        require(senderBalance >= amount, "BEP20: transfer amount exceeds balance");
+        _balances[sender] = senderBalance - amount;
+        _balances[recipient] += amount;
+
         emit Transfer(sender, recipient, amount);
     }
 
@@ -650,8 +440,8 @@ contract BEP20 is Ownable, IBEP20 {
 
         _beforeTokenTransfer(address(0), account, amount);
 
-        _totalSupply = _totalSupply.add(amount);
-        _balances[account] = _balances[account].add(amount);
+        _totalSupply += amount;
+        _balances[account] += amount;
         emit Transfer(address(0), account, amount);
     }
 
@@ -671,8 +461,11 @@ contract BEP20 is Ownable, IBEP20 {
 
         _beforeTokenTransfer(account, address(0), amount);
 
-        _balances[account] = _balances[account].sub(amount, "BEP20: burn amount exceeds balance");
-        _totalSupply = _totalSupply.sub(amount);
+        uint256 accountBalance = _balances[account];
+        require(accountBalance >= amount, "BEP20: burn amount exceeds balance");
+        _balances[account] = accountBalance - amount;
+        _totalSupply -= amount;
+
         emit Transfer(account, address(0), amount);
     }
 
@@ -729,7 +522,7 @@ contract BEP20 is Ownable, IBEP20 {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 
 /**
@@ -792,18 +585,11 @@ abstract contract BEP20Mintable is BEP20 {
     }
 }
 
-// File: @openzeppelin/contracts/GSN/Context.sol
-
-
-
-pragma solidity >=0.6.0 <0.8.0;
-
 // File: contracts/token/BEP20/lib/BEP20Burnable.sol
 
 
 
-pragma solidity ^0.7.0;
-
+pragma solidity ^0.8.0;
 
 
 /**
@@ -811,9 +597,7 @@ pragma solidity ^0.7.0;
  * tokens and those that they have an allowance for, in a way that can be
  * recognized off-chain (via event analysis).
  */
-abstract contract BEP20Burnable is Context, BEP20 {
-    using SafeMath for uint256;
-
+abstract contract BEP20Burnable is BEP20 {
     /**
      * @dev Destroys `amount` tokens from the caller.
      *
@@ -835,18 +619,18 @@ abstract contract BEP20Burnable is Context, BEP20 {
      * `amount`.
      */
     function burnFrom(address account, uint256 amount) public virtual {
-        uint256 decreasedAllowance = allowance(account, _msgSender()).sub(amount, "BEP20: burn amount exceeds allowance");
-
-        _approve(account, _msgSender(), decreasedAllowance);
-        _burn(account, amount);
+      uint256 currentAllowance = allowance(account, _msgSender());
+      require(currentAllowance >= amount, "BEP20: burn amount exceeds allowance");
+      _approve(account, _msgSender(), currentAllowance - amount);
+      _burn(account, amount);
     }
 }
 
-// File: @openzeppelin/contracts/introspection/IERC165.sol
+// File: @openzeppelin/contracts/utils/introspection/IERC165.sol
 
 
 
-pragma solidity >=0.6.0 <0.8.0;
+pragma solidity ^0.8.0;
 
 /**
  * @dev Interface of the ERC165 standard, as defined in the
@@ -873,7 +657,7 @@ interface IERC165 {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 
 
@@ -883,21 +667,6 @@ pragma solidity ^0.7.0;
  *  https://eips.ethereum.org/EIPS/eip-1363
  */
 interface IBEP20Operable is IBEP20, IERC165 {
-    /*
-     * Note: the ERC-165 identifier for this interface is 0x4bbee2df.
-     * 0x4bbee2df ===
-     *   bytes4(keccak256('transferAndCall(address,uint256)')) ^
-     *   bytes4(keccak256('transferAndCall(address,uint256,bytes)')) ^
-     *   bytes4(keccak256('transferFromAndCall(address,address,uint256)')) ^
-     *   bytes4(keccak256('transferFromAndCall(address,address,uint256,bytes)'))
-     */
-
-    /*
-     * Note: the ERC-165 identifier for this interface is 0xfb9ec8ce.
-     * 0xfb9ec8ce ===
-     *   bytes4(keccak256('approveAndCall(address,uint256)')) ^
-     *   bytes4(keccak256('approveAndCall(address,uint256,bytes)'))
-     */
 
     /**
      * @notice Transfer tokens from `msg.sender` to another address and then call `onTransferReceived` on receiver
@@ -965,7 +734,7 @@ interface IBEP20Operable is IBEP20, IERC165 {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 /**
  * @title IBEP20OperableReceiver Interface
@@ -974,10 +743,6 @@ pragma solidity ^0.7.0;
  *  https://eips.ethereum.org/EIPS/eip-1363
  */
 interface IBEP20OperableReceiver {
-    /*
-     * Note: the ERC-165 identifier for this interface is 0x88a7ca5c.
-     * 0x88a7ca5c === bytes4(keccak256("onTransferReceived(address,address,uint256,bytes)"))
-     */
 
     /**
      * @notice Handle the receipt of BEP20Operable tokens
@@ -999,7 +764,7 @@ interface IBEP20OperableReceiver {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 /**
  * @title IBEP20OperableSpender Interface
@@ -1008,10 +773,6 @@ pragma solidity ^0.7.0;
  *  https://eips.ethereum.org/EIPS/eip-1363
  */
 interface IBEP20OperableSpender {
-    /*
-     * Note: the ERC-165 identifier for this interface is 0x7b04a2d0.
-     * 0x7b04a2d0 === bytes4(keccak256("onApprovalReceived(address,uint256,bytes)"))
-     */
 
     /**
      * @notice Handle the approval of BEP20Operable tokens
@@ -1032,7 +793,7 @@ interface IBEP20OperableSpender {
 
 
 
-pragma solidity >=0.6.2 <0.8.0;
+pragma solidity ^0.8.0;
 
 /**
  * @dev Collection of functions related to the address type
@@ -1220,11 +981,12 @@ library Address {
     }
 }
 
-// File: @openzeppelin/contracts/introspection/ERC165Checker.sol
+// File: @openzeppelin/contracts/utils/introspection/ERC165Checker.sol
 
 
 
-pragma solidity >=0.6.2 <0.8.0;
+pragma solidity ^0.8.0;
+
 
 /**
  * @dev Library used to query support of an interface declared via {IERC165}.
@@ -1237,18 +999,13 @@ library ERC165Checker {
     // As per the EIP-165 spec, no interface should ever match 0xffffffff
     bytes4 private constant _INTERFACE_ID_INVALID = 0xffffffff;
 
-    /*
-     * bytes4(keccak256('supportsInterface(bytes4)')) == 0x01ffc9a7
-     */
-    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
-
     /**
      * @dev Returns true if `account` supports the {IERC165} interface,
      */
     function supportsERC165(address account) internal view returns (bool) {
         // Any contract that implements ERC165 must explicitly indicate support of
         // InterfaceId_ERC165 and explicitly indicate non-support of InterfaceId_Invalid
-        return _supportsERC165Interface(account, _INTERFACE_ID_ERC165) &&
+        return _supportsERC165Interface(account, type(IERC165).interfaceId) &&
             !_supportsERC165Interface(account, _INTERFACE_ID_INVALID);
     }
 
@@ -1327,86 +1084,40 @@ library ERC165Checker {
      * Interface identification is specified in ERC-165.
      */
     function _supportsERC165Interface(address account, bytes4 interfaceId) private view returns (bool) {
-        // success determines whether the staticcall succeeded and result determines
-        // whether the contract at account indicates support of _interfaceId
-        (bool success, bool result) = _callERC165SupportsInterface(account, interfaceId);
-
-        return (success && result);
-    }
-
-    /**
-     * @notice Calls the function with selector 0x01ffc9a7 (ERC165) and suppresses throw
-     * @param account The address of the contract to query for support of an interface
-     * @param interfaceId The interface identifier, as specified in ERC-165
-     * @return success true if the STATICCALL succeeded, false otherwise
-     * @return result true if the STATICCALL succeeded and the contract at account
-     * indicates support of the interface with identifier interfaceId, false otherwise
-     */
-    function _callERC165SupportsInterface(address account, bytes4 interfaceId)
-        private
-        view
-        returns (bool, bool)
-    {
-        bytes memory encodedParams = abi.encodeWithSelector(_INTERFACE_ID_ERC165, interfaceId);
+        bytes memory encodedParams = abi.encodeWithSelector(IERC165(account).supportsInterface.selector, interfaceId);
         (bool success, bytes memory result) = account.staticcall{ gas: 30000 }(encodedParams);
-        if (result.length < 32) return (false, false);
-        return (success, abi.decode(result, (bool)));
+        if (result.length < 32) return false;
+        return success && abi.decode(result, (bool));
     }
 }
 
-// File: @openzeppelin/contracts/introspection/ERC165.sol
+// File: @openzeppelin/contracts/utils/introspection/ERC165.sol
 
 
 
-pragma solidity >=0.6.0 <0.8.0;
+pragma solidity ^0.8.0;
 
 
 /**
  * @dev Implementation of the {IERC165} interface.
  *
- * Contracts may inherit from this and call {_registerInterface} to declare
- * their support of an interface.
+ * Contracts that want to implement ERC165 should inherit from this contract and override {supportsInterface} to check
+ * for the additional interface id that will be supported. For example:
+ *
+ * ```solidity
+ * function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
+ *     return interfaceId == type(MyInterface).interfaceId || super.supportsInterface(interfaceId);
+ * }
+ * ```
+ *
+ * Alternatively, {ERC165Storage} provides an easier to use but more expensive implementation.
  */
 abstract contract ERC165 is IERC165 {
-    /*
-     * bytes4(keccak256('supportsInterface(bytes4)')) == 0x01ffc9a7
-     */
-    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
-
-    /**
-     * @dev Mapping of interface ids to whether or not it's supported.
-     */
-    mapping(bytes4 => bool) private _supportedInterfaces;
-
-    constructor () internal {
-        // Derived contracts need only register support for their own interfaces,
-        // we register support for ERC165 itself here
-        _registerInterface(_INTERFACE_ID_ERC165);
-    }
-
     /**
      * @dev See {IERC165-supportsInterface}.
-     *
-     * Time complexity O(1), guaranteed to always use less than 30 000 gas.
      */
     function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
-        return _supportedInterfaces[interfaceId];
-    }
-
-    /**
-     * @dev Registers the contract as an implementer of the interface defined by
-     * `interfaceId`. Support of the actual ERC165 interface is automatic and
-     * registering its interface id is not required.
-     *
-     * See {IERC165-supportsInterface}.
-     *
-     * Requirements:
-     *
-     * - `interfaceId` cannot be the ERC165 invalid interface (`0xffffffff`).
-     */
-    function _registerInterface(bytes4 interfaceId) internal virtual {
-        require(interfaceId != 0xffffffff, "ERC165: invalid interface id");
-        _supportedInterfaces[interfaceId] = true;
+        return interfaceId == type(IERC165).interfaceId;
     }
 }
 
@@ -1414,7 +1125,7 @@ abstract contract ERC165 is IERC165 {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 
 
@@ -1427,43 +1138,14 @@ pragma solidity ^0.7.0;
  * @title BEP20Operable
  * @dev Implementation of the {IBEP20Operable} interface
  */
-contract BEP20Operable is BEP20, IBEP20Operable, ERC165 {
+abstract contract BEP20Operable is BEP20, IBEP20Operable, ERC165 {
     using Address for address;
 
-    /*
-     * Note: the ERC-165 identifier for this interface is 0x4bbee2df.
-     * 0x4bbee2df ===
-     *   bytes4(keccak256('transferAndCall(address,uint256)')) ^
-     *   bytes4(keccak256('transferAndCall(address,uint256,bytes)')) ^
-     *   bytes4(keccak256('transferFromAndCall(address,address,uint256)')) ^
-     *   bytes4(keccak256('transferFromAndCall(address,address,uint256,bytes)'))
-     */
-    bytes4 internal constant _INTERFACE_ID_ERC1363_TRANSFER = 0x4bbee2df;
-
-    /*
-     * Note: the ERC-165 identifier for this interface is 0xfb9ec8ce.
-     * 0xfb9ec8ce ===
-     *   bytes4(keccak256('approveAndCall(address,uint256)')) ^
-     *   bytes4(keccak256('approveAndCall(address,uint256,bytes)'))
-     */
-    bytes4 internal constant _INTERFACE_ID_ERC1363_APPROVE = 0xfb9ec8ce;
-
-    // Equals to `bytes4(keccak256("onTransferReceived(address,address,uint256,bytes)"))`
-    // which can be also obtained as `IBEP20OperableReceiver(0).onTransferReceived.selector`
-    bytes4 private constant _ERC1363_RECEIVED = 0x88a7ca5c;
-
-    // Equals to `bytes4(keccak256("onApprovalReceived(address,uint256,bytes)"))`
-    // which can be also obtained as `IBEP20OperableSpender(0).onApprovalReceived.selector`
-    bytes4 private constant _ERC1363_APPROVED = 0x7b04a2d0;
-
     /**
-     * @param name Name of the token
-     * @param symbol A symbol to be used as ticker
+     * @dev See {IERC165-supportsInterface}.
      */
-    constructor (string memory name, string memory symbol) BEP20(name, symbol) {
-        // register the supported interfaces to conform to BEP20Operable via ERC165
-        _registerInterface(_INTERFACE_ID_ERC1363_TRANSFER);
-        _registerInterface(_INTERFACE_ID_ERC1363_APPROVE);
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
+        return interfaceId == type(IBEP20Operable).interfaceId || super.supportsInterface(interfaceId);
     }
 
     /**
@@ -1553,7 +1235,7 @@ contract BEP20Operable is BEP20, IBEP20Operable, ERC165 {
         bytes4 retval = IBEP20OperableReceiver(recipient).onTransferReceived(
             _msgSender(), sender, amount, data
         );
-        return (retval == _ERC1363_RECEIVED);
+        return (retval == IBEP20OperableReceiver(recipient).onTransferReceived.selector);
     }
 
     /**
@@ -1571,7 +1253,7 @@ contract BEP20Operable is BEP20, IBEP20Operable, ERC165 {
         bytes4 retval = IBEP20OperableSpender(spender).onApprovalReceived(
             _msgSender(), amount, data
         );
-        return (retval == _ERC1363_APPROVED);
+        return (retval == IBEP20OperableSpender(spender).onApprovalReceived.selector);
     }
 }
 
@@ -1579,7 +1261,7 @@ contract BEP20Operable is BEP20, IBEP20Operable, ERC165 {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 
 
@@ -1603,7 +1285,7 @@ contract TokenRecover is Ownable {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 interface IPayable {
     function pay(string memory serviceName) external payable;
@@ -1624,7 +1306,7 @@ abstract contract ServicePayer {
 
 
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 
 
@@ -1644,7 +1326,7 @@ contract AmazingBEP20 is BEP20Mintable, BEP20Burnable, BEP20Operable, TokenRecov
         uint256 initialBalance,
         address payable feeReceiver
     )
-      BEP20Operable(name, symbol)
+      BEP20(name, symbol)
       ServicePayer(feeReceiver, "AmazingBEP20")
       payable
     {

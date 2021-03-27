@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/HelloBEP20.dist.sol | 303acbc2919a3fc2073edab2b082d677cab0c0d9 |
+| dist/HelloBEP20.dist.sol | 819aca2b7d5fc699623f7ad29fe647d097473da0 |
 
 
 ### Contracts Description Table
@@ -20,25 +20,10 @@
 | └ | _msgData | Internal 🔒 |   | |
 ||||||
 | **Ownable** | Implementation | Context |||
-| └ | <Constructor> | Internal 🔒 | 🛑  | |
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 | └ | owner | Public ❗️ |   |NO❗️ |
 | └ | renounceOwnership | Public ❗️ | 🛑  | onlyOwner |
 | └ | transferOwnership | Public ❗️ | 🛑  | onlyOwner |
-||||||
-| **SafeMath** | Library |  |||
-| └ | tryAdd | Internal 🔒 |   | |
-| └ | trySub | Internal 🔒 |   | |
-| └ | tryMul | Internal 🔒 |   | |
-| └ | tryDiv | Internal 🔒 |   | |
-| └ | tryMod | Internal 🔒 |   | |
-| └ | add | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | mul | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
 ||||||
 | **IBEP20** | Interface |  |||
 | └ | name | External ❗️ |   |NO❗️ |

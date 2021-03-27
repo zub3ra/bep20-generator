@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./lib/BEP20Capped.sol";
@@ -40,7 +40,7 @@ contract CommonBEP20 is BEP20Capped, BEP20Mintable, BEP20Burnable, ServicePayer 
      * @param account The address that will receive the minted tokens
      * @param amount The amount of tokens to mint
      */
-    function _mint(address account, uint256 amount) internal override onlyOwner {
+    function _mint(address account, uint256 amount) internal override(BEP20, BEP20Capped) onlyOwner {
         super._mint(account, amount);
     }
 
@@ -51,12 +51,5 @@ contract CommonBEP20 is BEP20Capped, BEP20Mintable, BEP20Burnable, ServicePayer 
      */
     function _finishMinting() internal override onlyOwner {
         super._finishMinting();
-    }
-
-    /**
-     * @dev See {BEP20-_beforeTokenTransfer}. See {BEP20Capped-_beforeTokenTransfer}.
-     */
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal override(BEP20, BEP20Capped) {
-        super._beforeTokenTransfer(from, to, amount);
     }
 }

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 import "./BEP20.sol";
 
@@ -8,8 +8,6 @@ import "./BEP20.sol";
  * @dev Extension of {BEP20} that adds a cap to the supply of tokens.
  */
 abstract contract BEP20Capped is BEP20 {
-    using SafeMath for uint256;
-
     uint256 private _cap;
 
     /**
@@ -29,17 +27,10 @@ abstract contract BEP20Capped is BEP20 {
     }
 
     /**
-     * @dev See {BEP20-_beforeTokenTransfer}.
-     *
-     * Requirements:
-     *
-     * - minted tokens must not cause the total supply to go over the cap.
+     * @dev See {BEP20-_mint}.
      */
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override {
-        super._beforeTokenTransfer(from, to, amount);
-
-        if (from == address(0)) { // When minting tokens
-          require(totalSupply().add(amount) <= _cap, "BEP20Capped: cap exceeded");
-        }
+    function _mint(address account, uint256 amount) internal virtual override {
+        require(totalSupply() + amount <= cap(), "BEP20Capped: cap exceeded");
+        super._mint(account, amount);
     }
 }

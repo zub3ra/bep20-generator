@@ -5,7 +5,7 @@
 
 |  File Name  |  SHA-1 Hash  |
 |-------------|--------------|
-| dist/CommonBEP20.dist.sol | a193803e33af6ee076b3c5a37157ed155af16ecc |
+| dist/CommonBEP20.dist.sol | 4e32a243c30258e83651b2d5fd4607a9c7131acd |
 
 
 ### Contracts Description Table
@@ -20,25 +20,10 @@
 | └ | _msgData | Internal 🔒 |   | |
 ||||||
 | **Ownable** | Implementation | Context |||
-| └ | <Constructor> | Internal 🔒 | 🛑  | |
+| └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 | └ | owner | Public ❗️ |   |NO❗️ |
 | └ | renounceOwnership | Public ❗️ | 🛑  | onlyOwner |
 | └ | transferOwnership | Public ❗️ | 🛑  | onlyOwner |
-||||||
-| **SafeMath** | Library |  |||
-| └ | tryAdd | Internal 🔒 |   | |
-| └ | trySub | Internal 🔒 |   | |
-| └ | tryMul | Internal 🔒 |   | |
-| └ | tryDiv | Internal 🔒 |   | |
-| └ | tryMod | Internal 🔒 |   | |
-| └ | add | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | mul | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
-| └ | sub | Internal 🔒 |   | |
-| └ | div | Internal 🔒 |   | |
-| └ | mod | Internal 🔒 |   | |
 ||||||
 | **IBEP20** | Interface |  |||
 | └ | name | External ❗️ |   |NO❗️ |
@@ -76,7 +61,7 @@
 | **BEP20Capped** | Implementation | BEP20 |||
 | └ | <Constructor> | Public ❗️ | 🛑  |NO❗️ |
 | └ | cap | Public ❗️ |   |NO❗️ |
-| └ | _beforeTokenTransfer | Internal 🔒 | 🛑  | |
+| └ | _mint | Internal 🔒 | 🛑  | |
 ||||||
 | **BEP20Mintable** | Implementation | BEP20 |||
 | └ | mintingFinished | Public ❗️ |   |NO❗️ |
@@ -84,7 +69,7 @@
 | └ | finishMinting | Public ❗️ | 🛑  | canMint |
 | └ | _finishMinting | Internal 🔒 | 🛑  | |
 ||||||
-| **BEP20Burnable** | Implementation | Context, BEP20 |||
+| **BEP20Burnable** | Implementation | BEP20 |||
 | └ | burn | Public ❗️ | 🛑  |NO❗️ |
 | └ | burnFrom | Public ❗️ | 🛑  |NO❗️ |
 ||||||
@@ -98,7 +83,6 @@
 | └ | <Constructor> | Public ❗️ |  💵 | BEP20 BEP20Capped ServicePayer |
 | └ | _mint | Internal 🔒 | 🛑  | onlyOwner |
 | └ | _finishMinting | Internal 🔒 | 🛑  | onlyOwner |
-| └ | _beforeTokenTransfer | Internal 🔒 | 🛑  | |
 
 
 ### Legend

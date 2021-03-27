@@ -462,8 +462,7 @@ function shouldBehaveLikeBEP20Operable ([owner, spender, recipient], balance) {
   });
 
   shouldSupportInterfaces([
-    'BEP20OperableTransfer',
-    'BEP20OperableApprove',
+    'BEP20Operable',
   ]);
 }
 

@@ -29,7 +29,7 @@
                         </b-badge>
                         <span itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="align-middle">
                             <span itemprop="price">{{ t.price }}</span>
-                            <small class="term" itemprop="priceCurrency">ETH</small>
+                            <small class="term" itemprop="priceCurrency">BNB</small>
                         </span>
                     </p>
 

@@ -16,6 +16,7 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: false,
+          originalPrice: 0,
           price: 0,
         },
         {
@@ -32,6 +33,7 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: false,
+          originalPrice: 0.5,
           price: 0.5,
         },
         {
@@ -48,6 +50,7 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: true,
+          originalPrice: 2.5,
           price: 2.5,
         },
         {
@@ -64,7 +67,8 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: true,
-          price: 4.5,
+          originalPrice: 4.5,
+          price: 3,
         },
         {
           name: 'MintableBEP20',
@@ -80,7 +84,8 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: true,
-          price: 5.5,
+          originalPrice: 5.5,
+          price: 4,
         },
         {
           name: 'CommonBEP20',
@@ -96,7 +101,8 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: true,
-          price: 6.5,
+          originalPrice: 6.5,
+          price: 5,
         },
         {
           name: 'UnlimitedBEP20',
@@ -112,7 +118,8 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: true,
-          price: 7.5,
+          originalPrice: 7.5,
+          price: 6.5,
         },
         {
           name: 'AmazingBEP20',
@@ -128,7 +135,8 @@ export default {
           operable: true,
           tokenRecover: true,
           removeCopyright: true,
-          price: 8.5,
+          originalPrice: 8.5,
+          price: 7,
         },
       ],
     };

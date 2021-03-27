@@ -22,10 +22,14 @@
                     <b-card-title class="pt-5 font-weight-light text-center" itemprop="name">
                         {{ t.name }}
                     </b-card-title>
+
                     <p class="card-price text-center">
-                        <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <b-badge variant="danger" v-if="t.originalPrice !== t.price">
+                            <s>{{ t.originalPrice }} <small>BNB</small></s>
+                        </b-badge>
+                        <span itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="align-middle">
                             <span itemprop="price">{{ t.price }}</span>
-                            <small class="term" itemprop="priceCurrency">BNB</small>
+                            <small class="term" itemprop="priceCurrency">ETH</small>
                         </span>
                     </p>
 

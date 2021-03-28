@@ -4,7 +4,7 @@ export default {
       tokenDetails: [
         {
           name: 'HelloBEP20',
-          version: '1.3.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,
@@ -21,7 +21,7 @@ export default {
         },
         {
           name: 'SimpleBEP20',
-          version: '1.3.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,
@@ -38,7 +38,7 @@ export default {
         },
         {
           name: 'StandardBEP20',
-          version: '1.0.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,
@@ -55,7 +55,7 @@ export default {
         },
         {
           name: 'BurnableBEP20',
-          version: '1.0.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,
@@ -72,7 +72,7 @@ export default {
         },
         {
           name: 'MintableBEP20',
-          version: '1.1.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,
@@ -89,7 +89,7 @@ export default {
         },
         {
           name: 'CommonBEP20',
-          version: '1.0.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,
@@ -106,7 +106,7 @@ export default {
         },
         {
           name: 'UnlimitedBEP20',
-          version: '1.2.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,
@@ -123,7 +123,7 @@ export default {
         },
         {
           name: 'AmazingBEP20',
-          version: '1.4.0',
+          version: '2.0.0',
           standard: true,
           verified: true,
           detailed: true,

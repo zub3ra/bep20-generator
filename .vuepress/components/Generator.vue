@@ -54,6 +54,10 @@
                                     <b-icon-arrow-up-right-circle-fill></b-icon-arrow-up-right-circle-fill>
                                     View on BscScan
                                 </b-link>
+                                <b-link @click="addToMetaMask" class="btn btn-success my-2">
+                                    <b-icon-plus-circle-fill></b-icon-plus-circle-fill>
+                                    Add to MetaMask
+                                </b-link>
                             </div>
                         </div>
                     </b-card>
@@ -693,6 +697,23 @@
         params.push(this.contracts.service.options.address);
 
         return params;
+      },
+      async addToMetaMask () {
+        try {
+          await this.web3Provider.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: this.token.address,
+                symbol: this.token.symbol.substr(0, 5),
+                decimals: this.token.decimals,
+              },
+            },
+          });
+        } catch (e) {
+          console.log(e); // eslint-disable-line no-console
+        }
       },
     },
   };

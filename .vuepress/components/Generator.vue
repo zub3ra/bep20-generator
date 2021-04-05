@@ -566,15 +566,21 @@
 
               const tokenContract = new this.web3.eth.Contract(this.contracts.token.abi);
 
-              tokenContract.deploy({
+              const deployOptions = {
                 data: this.contracts.token.bytecode,
                 arguments: this.getDeployArguments(),
-              })
-                .send(
-                  {
-                    from: await this.promisify(this.web3.eth.getCoinbase),
-                    value: this.feeAmount,
-                  })
+              };
+
+              const sendOptions = {
+                from: await this.promisify(this.web3.eth.getCoinbase),
+                value: this.feeAmount,
+                gasPrice: '10000000000', // default gas price 10 gwei
+              };
+
+              sendOptions.gas = await this.estimateDeployGas(tokenContract, deployOptions, sendOptions);
+
+              tokenContract.deploy(deployOptions)
+                .send(sendOptions)
                 .on('error', (error) => {
                   console.log(error.message); // eslint-disable-line no-console
 
@@ -650,6 +656,7 @@
         this.token.tokenRecover = detail.tokenRecover;
         this.token.removeCopyright = detail.removeCopyright;
         this.token.price = detail.price;
+        this.token.gas = this.web3.utils.toBN(detail.gas);
 
         this.token.decimals = detail.customizeDecimals ? this.token.decimals : 18;
       },
@@ -697,6 +704,17 @@
         params.push(this.contracts.service.options.address);
 
         return params;
+      },
+      async estimateDeployGas (tokenContract, deployOptions, sendOptions) {
+        try {
+          const gas = await this.promisify(tokenContract.deploy(deployOptions).estimateGas, sendOptions);
+
+          return this.web3.utils.toBN(gas).muln(1.3); // add 30% tolerance
+        } catch (e) {
+          console.log(e); // eslint-disable-line no-console
+
+          return this.token.gas;
+        }
       },
       async addToMetaMask () {
         try {

@@ -37,17 +37,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/vittominacori/bep20-generator.git"
+    "url": "https://github.com/tokencenter/bep20-generator.git"
   },
-  "homepage": "https://vittominacori.github.io/bep20-generator",
+  "homepage": "https://tokencenter.github.io/bep20-generator",
   "bugs": {
-    "url": "https://github.com/vittominacori/bep20-generator/issues"
+    "url": "https://github.com/tokencenter/bep20-generator/issues"
   },
-  "author": "Vittorio Minacori",
+  "author": "TokenCenter",
   "contributors": [
     {
-      "name": "Vittorio Minacori",
-      "url": "https://github.com/vittominacori"
+      "name": "TokenCenter",
+      "url": "https://github.com/tokencenter"
     }
   ],
   "license": "MIT",

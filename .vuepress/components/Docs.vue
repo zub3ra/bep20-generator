@@ -42,18 +42,18 @@
                                     class="mt-3">
                                 <b-list-group flush>
                                     <b-list-group-item class="py-4">
-                                        <b-link :href="`https://github.com/vittominacori/bep20-generator/blob/v${token.version}/dist/${contracts.token.contractName}.dist.sol`"
+                                        <b-link :href="`https://github.com/tokencenter/bep20-generator/blob/v${token.version}/dist/${contracts.token.contractName}.dist.sol`"
                                                 target="_blank">
                                             <b-img :src="`https://img.shields.io/badge/version-${token.version}-blue`"></b-img>
                                         </b-link>
-                                        <b-link href="https://github.com/vittominacori/bep20-generator/actions" target="_blank">
-                                            <b-img src="https://github.com/vittominacori/bep20-generator/workflows/CI/badge.svg?branch=master"></b-img>
+                                        <b-link href="https://github.com/tokencenter/bep20-generator/actions" target="_blank">
+                                            <b-img src="https://github.com/tokencenter/bep20-generator/workflows/CI/badge.svg?branch=master"></b-img>
                                         </b-link>
-                                        <b-link href="https://coveralls.io/github/vittominacori/bep20-generator?branch=master" target="_blank">
-                                            <b-img src="https://coveralls.io/repos/github/vittominacori/bep20-generator/badge.svg?branch=master"></b-img>
+                                        <b-link href="https://coveralls.io/github/tokencenter/bep20-generator?branch=master" target="_blank">
+                                            <b-img src="https://coveralls.io/repos/github/tokencenter/bep20-generator/badge.svg?branch=master"></b-img>
                                         </b-link>
-                                        <b-link href="https://github.com/vittominacori/bep20-generator/blob/master/LICENSE" target="_blank">
-                                            <b-img src="https://img.shields.io/github/license/vittominacori/bep20-generator.svg"></b-img>
+                                        <b-link href="https://github.com/tokencenter/bep20-generator/blob/master/LICENSE" target="_blank">
+                                            <b-img src="https://img.shields.io/github/license/tokencenter/bep20-generator.svg"></b-img>
                                         </b-link>
                                     </b-list-group-item>
                                     <b-list-group-item class="py-4">
@@ -319,13 +319,13 @@
     },
     computed: {
       controlFlow: function () {
-        return `https://github.com/vittominacori/bep20-generator/blob/v${this.token.version}/analysis/control-flow/${this.contracts.token.contractName}.png`;
+        return `https://github.com/tokencenter/bep20-generator/blob/v${this.token.version}/analysis/control-flow/${this.contracts.token.contractName}.png`;
       },
       inheritanceTree: function () {
-        return `https://github.com/vittominacori/bep20-generator/blob/v${this.token.version}/analysis/inheritance-tree/${this.contracts.token.contractName}.png`;
+        return `https://github.com/tokencenter/bep20-generator/blob/v${this.token.version}/analysis/inheritance-tree/${this.contracts.token.contractName}.png`;
       },
       uml: function () {
-        return `https://github.com/vittominacori/bep20-generator/blob/v${this.token.version}/analysis/uml/${this.contracts.token.contractName}.svg`;
+        return `https://github.com/tokencenter/bep20-generator/blob/v${this.token.version}/analysis/uml/${this.contracts.token.contractName}.svg`;
       },
     },
     mounted () {

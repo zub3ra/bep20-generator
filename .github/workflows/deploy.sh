@@ -72,8 +72,7 @@ parse_args() {
 
 	# Source directory & target branch.
 	deploy_directory=${GIT_DEPLOY_DIR:-dist}
-	deploy_branch=${GIT_DEPLOY_BRANCH:-
-  pages}
+	deploy_branch=${GIT_DEPLOY_BRANCH:-gh-pages}
 
 	#if no user identity is already set in the current git environment, use this:
 	default_username=${GIT_DEPLOY_USERNAME:-deploy.sh}

@@ -5,7 +5,7 @@
                      class="mb-0 wiretap-gradient"
                      fluid>
             <template #lead>
-                Create a BEP20 Token in less than a minute with the new Smart Contract Generator for BEP20 Token.
+                Create your own BEP20 Smart Contract without coding.
                 <br>
                 No login. No setup. No coding required.
             </template>

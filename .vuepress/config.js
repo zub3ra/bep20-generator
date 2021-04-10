@@ -1,7 +1,7 @@
 const vars = require('./.env.json');
 
 module.exports = {
-  description: 'Create a BEP20 Token in less than a minute with the new Smart Contract Generator for BEP20 Token. No login. No setup. No coding required.',
+  description: 'Create your own BEP20 Smart Contract without coding. No login. No setup. No coding required.',
   base: '/bep20-generator/',
   head: [
     ['link', { rel: 'shortcut icon', href: '/favicon.ico' }],

@@ -30,9 +30,7 @@
                 <p class="text-center font-weight-light">
                     Easily deploy Smart Contract for a Standard, Capped, Mintable, Burnable BEP20 Token.
                     <br>
-                    No login.
-                    No setup.
-                    No coding required.
+                    BEP20 Generator is the easiest and fastest way to create your own BEP20 token on the Binance Smart Chain network. No coding skills are required.
                 </p>
                 <ui--how-it-works></ui--how-it-works>
             </b-col>

@@ -1,7 +1,7 @@
 const vars = require('./.env.json');
 
 module.exports = {
-  description: 'Create your own BEP20 Smart Contract without coding. No login. No setup. No coding required.',
+  description: 'Create your own BEP20 Smart Contract without coding. BEP20 Generator is the easiest and fastest way to create your own BEP20 token on the Binance Smart Chain network. No coding skills are required.',
   base: '/bep20-generator/',
   head: [
     ['link', { rel: 'shortcut icon', href: '/favicon.ico' }],

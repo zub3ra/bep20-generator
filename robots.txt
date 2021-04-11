@@ -1,0 +1,4 @@
+User-Agent: *
+Allow:
+
+Sitemap: https://tokencenter.github.io/bep20-generator/sitemap.xml

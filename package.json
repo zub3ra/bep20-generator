@@ -43,11 +43,11 @@
   "bugs": {
     "url": "https://github.com/tokencenter/bep20-generator/issues"
   },
-  "author": "TokenCenter",
+  "author": "Vittorio Minacori",
   "contributors": [
     {
-      "name": "TokenCenter",
-      "url": "https://github.com/tokencenter"
+      "name": "Vittorio Minacori",
+      "url": "https://github.com/vittominacori"
     }
   ],
   "license": "MIT",

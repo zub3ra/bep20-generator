@@ -38,8 +38,8 @@
                     <b-list-group-item>
                         <small>
                             created by
-                            <b-link class="text-warning" href="https://tokencenter.github.io/" target="_blank">
-                                tokencenter
+                            <b-link class="text-warning" href="https://vittominacori.github.io/" target="_blank">
+                                Vittorio Minacori
                             </b-link>
                         </small>
                     </b-list-group-item>

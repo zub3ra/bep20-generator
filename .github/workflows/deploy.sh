@@ -212,4 +212,3 @@ restore_head() {
 
 [[ $1 = --source-only ]] || main "$@"
 
-

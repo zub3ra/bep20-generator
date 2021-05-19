@@ -38,7 +38,7 @@
                     <b-list-group-item>
                         <small>
                             created by
-                            <b-link class="text-warning" href="https://vittominacori.github.io/" target="_blank">
+                            <b-link class="text-warning" href="https://tokencenter.github.io/bep20-generator/#" target="_blank">
                                 Vittorio Minacori
                             </b-link>
                         </small>

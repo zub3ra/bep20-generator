@@ -52,7 +52,7 @@ export default {
           operable: false,
           tokenRecover: false,
           removeCopyright: true,
-          originalPrice: 1.5,
+          originalPrice: .75,
           price: 0.75,
           gas: 1260139,
         },
